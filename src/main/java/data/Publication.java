@@ -8,7 +8,12 @@ import lombok.Setter;
 public class Publication {
 
     private String title;
-    private int year;
     private String publisher;
+    private int year;
 
+    protected Publication(String title, String publisher, int year) {
+        this.title = title;
+        this.year = year;
+        this.publisher = publisher;
+    }
 }

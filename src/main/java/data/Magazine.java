@@ -12,9 +12,7 @@ public class Magazine extends Publication {
     private String language;
 
     public Magazine(String title, String publisher, int year, int month, int day, String language) {
-        this.setTitle(title);
-        this.setPublisher(publisher);
-        this.setYear(year);
+        super(title, publisher, year);
         this.setMonth(month);
         this.setDay(day);
         this.setLanguage(language);
