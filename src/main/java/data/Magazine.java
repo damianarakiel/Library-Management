@@ -18,8 +18,28 @@ public class Magazine extends Publication {
         this.setLanguage(language);
     }
 
-    public void printInfo() {
-        String info = getTitle() + " ; " + getPublisher() + " ; " + getYear() + " ; " + getMonth() + " ; " + getDay() + " ; " + getLanguage();
-        System.out.println(info);
+    @Override
+    public String toString() {
+        return getTitle() + " ; " + getPublisher() + " ; " + getYear() + " ; " + getMonth() + " ; " + getDay() + " ; " + getLanguage();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Magazine)) return false;
+
+        Magazine magazine = (Magazine) o;
+
+        if (getMonth() != magazine.getMonth()) return false;
+        if (getDay() != magazine.getDay()) return false;
+        return getLanguage().equals(magazine.getLanguage());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getMonth();
+        result = 31 * result + getDay();
+        result = 31 * result + getLanguage().hashCode();
+        return result;
     }
 }

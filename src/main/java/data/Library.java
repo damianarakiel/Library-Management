@@ -39,8 +39,7 @@ public class Library {
             System.out.println("Brak książek.");
         }
         for (int i = 0; i < MAX_BOOKS; i++) {
-            books[i].printInfo();
-        }
+            System.out.println(books[i]);        }
     }
 
     public void printMagazines() {
@@ -48,7 +47,7 @@ public class Library {
             System.out.println("Brak magazynów.");
         }
         for (int i = 0; i < MAX_MAGAZINES; i++){
-            magazines[i].printInfo();
+            System.out.println(magazines[i]);
         }
     }
 

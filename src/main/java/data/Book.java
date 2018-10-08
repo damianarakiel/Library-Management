@@ -22,8 +22,28 @@ public class Book extends Publication {
 //        this(book.getTitle(), book.getAuthor(), book.getYear(), book.getPages(), book.getPublisher(), book   .getIsbn());
 //    }
 
-    public void printInfo() {
-        String info = getTitle() + " ; " + getAuthor() + " ; " + getYear() + " ; " + getPages() + " ; " + getPublisher() + " ; " + getIsbn();
-        System.out.println(info);
+    @Override
+    public String toString() {
+        return getTitle() + " ; " + getAuthor() + " ; " + getYear() + " ; " + getPages() + " ; " + getPublisher() + " ; " + getIsbn();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Book)) return false;
+
+        Book book = (Book) o;
+
+        if (getPages() != book.getPages()) return false;
+        if (!getAuthor().equals(book.getAuthor())) return false;
+        return getIsbn().equals(book.getIsbn());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getAuthor().hashCode();
+        result = 31 * result + getPages();
+        result = 31 * result + getIsbn().hashCode();
+        return result;
     }
 }
