@@ -4,6 +4,10 @@ import data.Book;
 import data.Library;
 import data.Magazine;
 import utils.DataReader;
+import utils.LibraryUtils;
+
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 
 
 public class LibraryControl {
@@ -24,24 +28,32 @@ public class LibraryControl {
     }
 
     public void control() {
-        Option option;
-        printOptions();
-        while ((option = Option.createFromInt(dataReader.getInt())) != Option.EXIT) {
-            switch (option) {
-                case ADD_BOOK:
-                    addBook();
-                    break;
-                case ADD_MAGAZINE:
-                    addMagazine();
-                    break;
-                case PRINT_BOOKS:
-                    printBooks();
-                    break;
-                case PRINT_MAGAZINES:
-                    printMagazines();
-                    break;
+        Option option = null;
+        while (option != Option.EXIT){
+            try {
+                printOptions();
+                option = Option.createFromInt(dataReader.getInt());
+                switch (option) {
+                    case ADD_BOOK:
+                        addBook();
+                        break;
+                    case ADD_MAGAZINE:
+                        addMagazine();
+                        break;
+                    case PRINT_BOOKS:
+                        printBooks();
+                        break;
+                    case PRINT_MAGAZINES:
+                        printMagazines();
+                        break;
+                    case EXIT:
+                        ;
+                }
+            } catch (InputMismatchException ex) {
+                System.out.println("Nie poprawne dane. Nie dodano publikacji.");
+            } catch (NumberFormatException | NoSuchElementException ex){
+                System.out.println("Wybrana opcja nie istnieje, wybierz ponownie:");
             }
-            printOptions();
         }
         dataReader.close();
     }
@@ -52,7 +64,7 @@ public class LibraryControl {
     }
 
     private void printBooks() {
-        library.printBooks();
+        LibraryUtils.printBooks(library);
     }
 
     private void addMagazine() {
@@ -60,6 +72,7 @@ public class LibraryControl {
         library.addMagazine(magazine);
     }
 
-    private void printMagazines() { library.printMagazines(); }
+    private void printMagazines() {
+        LibraryUtils.printMagazines(library); }
 
 }

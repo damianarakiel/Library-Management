@@ -20,7 +20,19 @@ public class Magazine extends Publication {
 
     @Override
     public String toString() {
-        return getTitle() + " ; " + getPublisher() + " ; " + getYear() + " ; " + getMonth() + " ; " + getDay() + " ; " + getLanguage();
+        StringBuilder builder = new StringBuilder(32);
+        builder.append(getTitle());
+        builder.append(" ; ");
+        builder.append(getPublisher());
+        builder.append(" ; ");
+        builder.append(getYear());
+        builder.append(" ; ");
+        builder.append(getMonth());
+        builder.append(" ; ");
+        builder.append(getDay());
+        builder.append(" ; ");
+        builder.append(getLanguage());
+        return builder.toString();
     }
 
     @Override
@@ -42,4 +54,5 @@ public class Magazine extends Publication {
         result = 31 * result + getLanguage().hashCode();
         return result;
     }
+
 }
