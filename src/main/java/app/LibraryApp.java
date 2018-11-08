@@ -2,7 +2,7 @@ package app;
 
 public class LibraryApp {
 
-    public static final String APP_NAME = "Bibliotek v0.9";
+    public static final String APP_NAME = "Bibliotek v0.9"; // wersja aplikacji
 
     public static void main(String[] args) {
 
