@@ -16,8 +16,9 @@ public class LibraryControl {
     private Library library;
 
     public LibraryControl() {
-        dataReader = new DataReader();
-        library = new Library();
+
+        dataReader = new DataReader(); // zmienna do komunikacji z użytkownikiem
+        library = new Library(); // "biblioteka" przechowująca dane
     }
 
     private void printOptions() {
@@ -27,6 +28,9 @@ public class LibraryControl {
         }
     }
 
+    /*
+     * Główna pętla programu, która pozwala na wybór opcji i interakcję
+     */
     public void control() {
         Option option = null;
         while (option != Option.EXIT){
@@ -73,6 +77,42 @@ public class LibraryControl {
     }
 
     private void printMagazines() {
-        LibraryUtils.printMagazines(library); }
+        LibraryUtils.printMagazines(library);
+    }
 
+
+
+    /*
+     *Prywatną klasą wewnętrzną w LibraryControl
+     */
+    private enum Option {
+        EXIT(0, "Wyjście z programu"),
+        ADD_BOOK(1, "Dodanie książki"),
+        ADD_MAGAZINE(2,"Dodanie magazynu/gazety"),
+        PRINT_BOOKS(3, "Wyświetlenie dostępnych książek"),
+        PRINT_MAGAZINES(4, "WYświetlenie dostępnych magazynów/gazet");
+
+        private int value;
+        private String description;
+
+        @Override
+        public String toString() {
+            return value + " - " + description;
+        }
+
+        Option(int value, String description) {
+            this.value = value;
+            this.description = description;
+        }
+
+        public static Option createFromInt(int option) throws NoSuchElementException {
+            Option result = null;
+            try {
+                result = Option.values()[option];
+            } catch (ArrayIndexOutOfBoundsException ex){
+                throw new NoSuchElementException("Brak elementu o takim ID");
+            }
+            return result;
+        }
+    }
 }
